@@ -13,8 +13,13 @@ My Posts
         
         <p>{{ $post->title }}</p>
         <a href="{{ route('view.post', $post->id) }}">View</a>
-        <a href="{{ route('view.post', $post->id) }}">Edit</a>
+        <a href="{{ route('edit.post', $post->id) }}">Edit</a>
+        <form method="POST" action="{{ route('delete.post', $post->id) }}">
+            @csrf
+            @METHOD('DELETE')
 
+            <button>Delete</button>
+        </form>
     </li>
 
     @endforeach

@@ -17,10 +17,18 @@ class Post extends Model
     }
 
     public static function getPostById($id) {
-        return static::find($id)->get();
+        return static::where('id', $id)->get();
     }
 
     public static function createPost($data) {
         return static::insert($data);
+    }
+
+    public static function updatePost($id, $data) {
+        return static::where('id', $id)->update($data);
+    }
+
+    public static function deletePost($id) {
+        return static::where('id', $id)->delete();
     }
 }

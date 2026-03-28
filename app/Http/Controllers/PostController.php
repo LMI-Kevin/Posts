@@ -38,7 +38,22 @@ class PostController extends Controller
 
     public function editPost($id) {
         $post = Post::getPostById($id)[0];
+        $categories = Category::getCategories();
 
-        return view('user/edit_post', compact('post'));
+        return view('user/edit_post', compact(['post', 'categories']));
+    }
+
+    public function updatePost(Request $request, $id) {
+        $data = $request->only(['title', 'description', 'category_id']);
+
+        $post = Post::updatePost($id, $data);
+
+        return redirect()->route('view.post', $id);
+    }
+
+    public function deletePost($id) {
+        $post = Post::deletePost($id);
+
+        return redirect()->route('user.posts');
     }
 }

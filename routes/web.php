@@ -23,4 +23,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/my-posts', [PostController::class, 'viewUserPosts'])->name('user.posts');
 
     Route::get('/edit-post/{id}', [PostController::class, 'editPost'])->name('edit.post');
+    Route::put('/update-post/{id}', [PostController::class, 'updatePost'])->name('update.post');
+    Route::delete('/delete-post/{id}', [PostController::class, 'deletePost'])->name('delete.post');
 });
